@@ -33,15 +33,11 @@ while (i < data.length) {
   res.push(obj);
 }
 
-fs.writeFile(
-  "./embedding/dataFormatted.txt",
-  JSON.stringify(res),
-  function (err) {
-    if (err) console.log(err);
-    else {
-      console.log("Done");
-    }
+fs.writeFile("./dataFormatted.txt", JSON.stringify(res), function (err) {
+  if (err) console.log(err);
+  else {
+    console.log("Done");
   }
-);
+});
 
 //console.log(res);

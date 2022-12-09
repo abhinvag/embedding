@@ -1,4 +1,4 @@
-import data from "./dataFormatted.js";
+import data from "./dataFormatted500.js";
 import fields from "./fields.js";
 import purpose from "./purpose.js";
 import fs from "fs";
@@ -36,6 +36,29 @@ let res = "";
 
 // embedding 3
 
+// for (var i = 0; i < data.length; i++) {
+//   let temp = data[i].companyCategory;
+//   for (var j = 0; j < fields.length; j++) {
+//     if (
+//       fields[j] == "Data is encrypted in transit" ||
+//       fields[j] == "Data can’t be deleted" ||
+//       fields[j] == "You can request that data be deleted" ||
+//       fields[j] == "Independent security review"
+//     ) {
+//       if (data[i][fields[j]].length == 1) {
+//         temp += ",1";
+//       } else temp += ",0";
+//     } else {
+//       var len = data[i][fields[j]].length;
+//       temp += "," + len;
+//     }
+//   }
+//   res += temp;
+//   res += "\n";
+// }
+
+// embedding 4
+
 for (var i = 0; i < data.length; i++) {
   let temp = data[i].companyCategory;
   for (var j = 0; j < fields.length; j++) {
@@ -50,6 +73,11 @@ for (var i = 0; i < data.length; i++) {
       } else temp += ",0";
     } else {
       var len = data[i][fields[j]].length;
+      if (fields[j].includes("Optional") || fields[j].includes("(Optional)")) {
+        len *= 5;
+      } else {
+        len *= 10;
+      }
       temp += "," + len;
     }
   }
